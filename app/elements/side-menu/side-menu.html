@@ -1,0 +1,27 @@
+<link rel="import"
+  href="../../bower_components/polymer/polymer.html">
+<link rel="import"
+  href="../../bower_components/core-menu/core-menu.html">
+<link rel="import"
+  href="../../bower_components/paper-item/paper-item.html">
+<link rel="import"
+  href="../../bower_components/core-icons/core-icons.html">
+<link rel="import"
+  href="../../bower_components/core-icons/social-icons.html">
+
+<polymer-element name="side-menu" attributes="pages selected">
+  <template>
+    <link rel="stylesheet" href="side-menu.css">
+
+    <core-menu selected="{{selected}}" valueattr="hash">
+      <template repeat="{{page in pages}}">
+        <paper-item icon="chevron-right" label="{{page.name}}"
+                    hash="{{page.hash}}">
+          <a href="{{page.url}}" on-click="{{dispatchPage}}"></a>
+        </paper-item>
+      </template>
+    </core-menu>
+
+  </template>
+  <script src="side-menu.js"></script>
+</polymer-element>

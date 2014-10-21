@@ -1,0 +1,56 @@
+<link rel="import" href="../../bower_components/polymer/polymer.html">
+<link rel="import" href="../../bower_components/core-list/core-list.html">
+<link rel="import" href="../faker-import/faker-import.html">
+
+<polymer-element name="contact-list" layout vertical flex>
+  <template>
+    <style>
+    .item {
+      box-sizing: border-box;
+      height: 80px;
+      border-bottom: 1px solid #ddd;
+      padding: 4px;
+      cursor: default;
+      background-color: white;
+      overflow: hidden;
+    }
+    </style>
+
+    <core-list id="list" data="{{data}}" height="80" flex>
+      <template>
+        <div class="item">
+          <span class="from">{{model.name}}</span>
+        </div>
+      </template>
+    </core-list>
+  </template>
+  <script>
+  (function() {
+    Polymer({
+      ready: function() {
+        this.data = this.generateData();
+      },
+      generateData: function() {
+        var data = [];
+        for (var i = 0; i < 100; i++) {
+          var name = faker.name.findName();
+          data.push({
+            name: name
+          });
+        }
+        data.sort(function(a, b) {
+          if (a.name < b.name) {
+            return -1;
+          }
+          if (a.name > b.name) {
+            return 1;
+          }
+          return 0;
+        });
+
+        return data;
+      }
+    });
+  })();
+  </script>
+</polymer-element>
